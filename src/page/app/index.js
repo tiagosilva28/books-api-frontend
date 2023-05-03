@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "../auth";
-/* import About from "../about";
-import ListTasks from "../listTasks"; */
+import Register from "../auth/register";
+import Dashboard from "../dashboard";
+
 
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 
@@ -13,11 +14,13 @@ const App = () => {
     <Router>
       <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Book</Navbar.Brand>
+          <Navbar.Brand href="/dashboard">Amazing Book Store</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/auth">Login</Nav.Link>
+              <Nav.Link href="/register">Register</Nav.Link>
+              
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -25,8 +28,8 @@ const App = () => {
           <Row>
             <Col>
               <Route path="/auth" component={LoginPage} />
-             {/*  <Route path="/tasks" component={ListTasks} />
-              <Route path="/about" component={About} /> */}
+             <Route path="/register" component={Register} />
+             <Route path="/dashboard" component={Dashboard} />
             </Col>
           </Row>
         </Container>
