@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap"
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -38,28 +39,29 @@ function LoginPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
+    <div className="d-flex justify-content-center align-items-center">
+    <Form className="rounded p-4 p-sm-3" onSubmit={handleSubmit}>
+      <Form.Group>
+      <Form.Label>Email address</Form.Label>
+      <Form.Control type="email" placeholder="Enter email"d="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
+          onChange={(event) => setEmail(event.target.value)} />
+          <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+      </Form.Group>
+      
+
+      <Form.Group>
+      <Form.Label>Password</Form.Label>
+      <Form.Control type="password" placeholder="Password" id="password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-      </div>
+          onChange={(event) => setPassword(event.target.value)}/>
+      </Form.Group>
       {errorMessage && <p>{errorMessage}</p>}
-      <button type="submit">Login</button>
-    </form>
+      <Button variant="primary" type="submit">Login</Button>
+    </Form>
+    </div>
   );
 }
 
