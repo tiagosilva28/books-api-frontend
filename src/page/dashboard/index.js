@@ -1,57 +1,60 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap"
+import { Form, Button, Image } from "react-bootstrap";
 
 function Dashboard() {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect (() => {
+  useEffect(() => {
     /*event.preventDefault();*/
 
-    const token = localStorage.getItem('token');
-    const requestOptions = {    
+    const token = localStorage.getItem("token");
+    const requestOptions = {
       method: "GET",
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
-        'Authorization':`${token}`
-        },
+        Authorization: `${token}`,
+      },
     };
-
-    console.log(token)
-
-    fetch(`https://cors-anywhere.herokuapp.com/http://5.22.217.225:8081/api/v1/user/profile`, requestOptions)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/http://5.22.217.225:8081/api/v1/user/profile`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.data.success);
-        if (data.data.token) {  
-
-            setEmail(data.data.email);
-            console.log(email);
-            
-        } 
+        if (data.data) {
+          setEmail(data.data.email);
+          setName(data.data.name);
+          setImage(data.data.profile_picture);
+        }
       })
       .catch((error) => {
         console.error(error);
         setErrorMessage("An error occurred while authenticating.");
       });
-    }, []);
+  }, []);
 
   return (
     <div className="d-flex justify-content-center align-items-center">
-    <Form className="rounded p-4 p-sm-3" >
-      <Form.Group>
-      <Form.Label>email:{email}</Form.Label>
-      <Form.Control type="email" placeholder="Enter email"id="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)} />
-          <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-      </Form.Group>
-      
-      <Button variant="primary" type="submit">Login</Button>
-    </Form>
+      <Form className="rounded p-4 p-sm-3">
+        <Form.Group>
+          <Form.Label><Image src={image} alt="Example" fluid /></Form.Label>
+        </Form.Group>
+        
+        <Form.Group>
+          <Form.Label>Email: {email}</Form.Label>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Name: {name}</Form.Label>
+        </Form.Group>
+
+        <Button variant="primary" type="submit" href="/books">
+          Get All Books
+        </Button>
+      </Form>
     </div>
   );
 }
