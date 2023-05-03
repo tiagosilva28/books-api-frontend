@@ -24,7 +24,8 @@ function LoginPage() {
       .then((data) => {
         console.log(data.data.token);
         if (data.data.token) {
-            window.location.href = `https://www.google.com/`;
+            
+            window.location.href = `http://5.22.217.225:8081/api/v1/book/`;
         } else {
           setErrorMessage("Invalid email or password.");
           console.log(data);
