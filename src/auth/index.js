@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 
 function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`http://5.22.217.225:8081/api/v1/auth/login/username=${username}&password=${password}`)
+    if (!email || !password) {
+      setErrorMessage("Email and password are required.");
+      return;
+    }
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    };
+
+    fetch(`http://5.22.217.225:8081/api/v1/auth/login`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        if (data.success) {
-          // user is authenticated, redirect to dashboard
-          window.location.href = "/dashboard";
+        console.log(data.data.token);
+        if (data.data.token) {
+            window.location.href = `https://www.google.com/`;
         } else {
-          setErrorMessage("Invalid username or password.");
+          setErrorMessage("Invalid email or password.");
+          console.log(data);
         }
       })
       .catch((error) => {
@@ -27,12 +39,12 @@ function LoginPage() {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="email">Email:</label>
         <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
+          type="email"
+          id="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
         />
       </div>
       <div>
@@ -51,4 +63,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
