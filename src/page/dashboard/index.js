@@ -9,7 +9,7 @@ function Dashboard() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    /*event.preventDefault();*/
+    
 
     const token = localStorage.getItem("token");
     const requestOptions = {
@@ -20,7 +20,7 @@ function Dashboard() {
       },
     };
     fetch(
-      `https://cors-anywhere.herokuapp.com/http://5.22.217.225:8081/api/v1/user/profile`,
+      `http://5.22.217.225:8081/api/v1/user/profile`,
       requestOptions
     )
       .then((response) => response.json())
@@ -36,6 +36,8 @@ function Dashboard() {
         setErrorMessage("An error occurred while authenticating.");
       });
   }, []);
+
+  console.log(1)
 
   return (
     <div className="d-flex justify-content-center align-items-center">
