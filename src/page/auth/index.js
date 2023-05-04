@@ -24,7 +24,7 @@ function LoginPage() {
       .then((response) => response.json())
       .then((data) => {
         if (data.data.token) {
-            localStorage.setItem('token',data.data.token);
+            sessionStorage.setItem('token',data.data.token);
             window.location.href = `/dashboard`;
         } else {
           setErrorMessage("Invalid email or password.");

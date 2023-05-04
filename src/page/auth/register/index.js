@@ -26,8 +26,8 @@ function Register() {
       .then((data) => {
         console.log(data.data.token);
         if (data.data.token) {
-            
-            window.location.href = `http://5.22.217.225:8081/api/v1/book/`;
+            sessionStorage.setItem('token',data.data.token);
+            window.location.href = `/dashboard`;
         } else {
           setErrorMessage("Invalid email or password.");
           console.log(data);
