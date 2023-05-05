@@ -5,6 +5,7 @@ import LoginPage from "../auth";
 import Register from "../auth/register";
 import Dashboard from "../dashboard";
 import Books from "../book";
+import NewBook from "../book/newbook";
 
 
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
@@ -32,6 +33,7 @@ const App = () => {
              <Route path="/register" component={Register} />
              <Route path="/dashboard" component={Dashboard} />
              <Route path="/book" component={Books} />
+             <Route path="/newBook" component={NewBook} />
             </Col>
           </Row>
         </Container>

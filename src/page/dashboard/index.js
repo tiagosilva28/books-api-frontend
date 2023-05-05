@@ -42,11 +42,11 @@ function Dashboard() {
           <Form.Label>Name: {userData.name}</Form.Label>
         </Form.Group>
 
-        <Button className="mr-4" variant="primary" type="submit" href="/books">
+        <Button className="mr-4" variant="primary" type="submit" href="/book">
           Get All Books
         </Button>
 
-        <Button variant="info" type="submit" href="/books/newBook">
+        <Button variant="info" type="submit" href="/newBook">
           Insert new Book
         </Button>
 

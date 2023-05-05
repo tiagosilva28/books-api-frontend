@@ -35,6 +35,7 @@ useEffect(() => {
         {item.description}
       </Card.Text>
       <Button variant="primary">Update Book</Button>
+      <Button className="ml-3" variant="danger">Delete</Button>
     </Card.Body>
   </Card>
   ))}
