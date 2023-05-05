@@ -28,6 +28,7 @@ useEffect(() => {
 
   const handleDelete = (key) => (event) => {
     event.preventDefault();
+    console.log("im in")
     const requestOptions = {
       method: "DELETE",
       headers: {
