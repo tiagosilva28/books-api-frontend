@@ -5,6 +5,7 @@ import "../../index.css"
 function Books(){
 const [userData, setUserData] = useState ([]);
 const [errorMessage, setErrorMessage] = useState("");
+const token = sessionStorage.getItem("token");
 
 useEffect(() => {
     const requestOptions = {
@@ -22,6 +23,7 @@ useEffect(() => {
         console.error(error);
         setErrorMessage("An error occurred while authenticating.");
       });
+
   }, []);
 
   const handleDelete = (key) => (event) => {
@@ -30,7 +32,7 @@ useEffect(() => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `${token}`,
+        "Authorization": `${token}`
       },
     };
 
@@ -47,9 +49,11 @@ useEffect(() => {
     })
     .catch((error) => {
       console.error(error);
-      setErrorMessage("An error occurred while authenticating.");
+      setErrorMessage("Can not delete.");
     });
   }
+
+ 
 
   return (
   <div className="card-container">
