@@ -7,9 +7,7 @@ import Dashboard from "../dashboard";
 import Books from "../book";
 import NewBook from "../book/newbook";
 
-
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
-
 
 const App = () => {
   return (
@@ -22,7 +20,6 @@ const App = () => {
             <Nav className="mr-auto">
               <Nav.Link href="/auth">Login</Nav.Link>
               <Nav.Link href="/register">Register</Nav.Link>
-              
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -30,10 +27,10 @@ const App = () => {
           <Row>
             <Col>
               <Route path="/auth" component={LoginPage} />
-             <Route path="/register" component={Register} />
-             <Route path="/dashboard" component={Dashboard} />
-             <Route path="/book" component={Books} />
-             <Route path="/newBook" component={NewBook} />
+              <Route path="/register" component={Register} />
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/book" component={Books} />
+              <Route path="/newBook" component={NewBook} />
             </Col>
           </Row>
         </Container>
