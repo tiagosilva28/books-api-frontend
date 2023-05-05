@@ -24,6 +24,33 @@ useEffect(() => {
       });
   }, []);
 
+  const handleDelete = (key) => (event) => {
+    event.preventDefault();
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    };
+
+    fetch(`http://5.22.217.225:8081/api/v1/book/${key}`, requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      if(data.status){
+        console.log("Deleted Book");
+        window.location.href = `/dashboard`;
+      }
+      else{
+        console.log("CABUUUMMMM")
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      setErrorMessage("An error occurred while authenticating.");
+    });
+  }
+
   return (
   <div className="card-container">
     {userData.map((item) => (
@@ -35,7 +62,7 @@ useEffect(() => {
         {item.description}
       </Card.Text>
       <Button variant="primary">Update Book</Button>
-      <Button className="ml-3" variant="danger">Delete</Button>
+      <Button onClick={() => handleDelete(item.id)} className="ml-3" variant="danger">Delete</Button>
     </Card.Body>
   </Card>
   ))}
