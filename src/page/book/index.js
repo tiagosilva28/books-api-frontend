@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, Card } from "react-bootstrap";
 import "../../index.css";
+import { EditBook } from "../../api-client/bootstrapComponents";
 
 function Books() {
   const [userData, setUserData] = useState([]);
@@ -66,7 +67,7 @@ function Books() {
               {item.title} - {item.year}
             </Card.Title>
             <Card.Text>{item.description}</Card.Text>
-            <Button variant="primary">Update Book</Button>
+           <EditBook/>
             <Button onClick={() => handleDelete(item.id)} className="ml-3" variant="danger">Delete</Button>
           </Card.Body>
         </Card>
